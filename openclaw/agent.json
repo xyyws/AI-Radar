@@ -1,0 +1,18 @@
+{
+  "name": "ai-radar",
+  "description": "AI Radar 每日情报助手 — 从 11 个数据源提炼 AI 圈核心动态",
+  "version": "0.1.0",
+  "entry": "npx tsx typescript/src/orchestrator.ts",
+  "triggers": [
+    "今日报告",
+    "今日情报",
+    "AI雷达",
+    "AI Radar",
+    "每日报告",
+    "生成报告"
+  ],
+  "capabilities": [
+    "read:data/raw/radar_data.json",
+    "execute:agent:refine"
+  ]
+}

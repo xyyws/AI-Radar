@@ -1,0 +1,8 @@
+node_modules/
+data/raw/
+data/reports/
+data/logs/
+data/db/
+.env
+*.log
+/tmp/

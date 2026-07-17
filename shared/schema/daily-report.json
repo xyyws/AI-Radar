@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-radar.dev/schema/daily-report.json",
+  "title": "DailyAIRadarReport",
+  "description": "Agent 提炼后的每日 AI 情报报告格式",
+  "type": "object",
+  "required": ["date", "summary", "events", "keywords"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "报告日期，YYYY-MM-DD 格式"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 100,
+      "maxLength": 2000,
+      "description": "500 字左右的每日总览"
+    },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/$defs/RadarEvent"
+      },
+      "description": "核心事件列表，通常 3-5 个"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "maxItems": 20,
+      "description": "关键词 / 新名词列表"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "RadarEvent": {
+      "type": "object",
+      "required": ["title", "what", "whyImportant", "adoption", "trend", "tags"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "事件标题"
+        },
+        "what": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1000,
+          "description": "是什么 — 事件/技术/产品的本质描述"
+        },
+        "whyImportant": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1000,
+          "description": "为什么重要 — 技术范式转变或产业颠覆性分析"
+        },
+        "adoption": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000,
+          "description": "哪些公司开始用了 — 商业采纳情况，无线索时标注'研判'"
+        },
+        "trend": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1000,
+          "description": "未来趋势 — 短期和中期发展预判"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 10,
+          "description": "事件标签"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

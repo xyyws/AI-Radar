@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-radar.dev/schema/raw-intelligence.json",
+  "title": "RawIntelligence",
+  "description": "统一的原始情报数据格式，所有 11 个数据源的输出都必须符合此 schema",
+  "type": "object",
+  "required": ["source", "title", "url", "rawContent", "publishedAt", "language"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "github",
+        "arxiv",
+        "openai",
+        "anthropic",
+        "deepmind",
+        "meta",
+        "huggingface",
+        "twitter",
+        "reddit",
+        "wechat",
+        "zhihu"
+      ],
+      "description": "数据源标识"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "情报标题"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "原始链接"
+    },
+    "rawContent": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10000,
+      "description": "原始内容（标题 + 摘要 / 正文片段），用于 Agent 分析"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "发布时间，ISO 8601 格式"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["en", "zh"],
+      "description": "内容语言"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "源特有字段，不同数据源可存放各自的额外信息",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
