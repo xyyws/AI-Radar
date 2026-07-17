@@ -81,7 +81,9 @@
       "Bash(scp -o StrictHostKeyChecking=no /tmp/ai-radar-evidence.tar.gz admin@114.55.143.117:/tmp/)",
       "Bash(ssh admin@114.55.143.117 \"cd /opt/ai-radar && tar xzf /tmp/ai-radar-evidence.tar.gz && python3 -m python.src.pipeline --sources github arxiv huggingface openai deepmind 2>&1 | grep -E '精选|证据'\")",
       "Bash(git fetch *)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }

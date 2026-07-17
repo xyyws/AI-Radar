@@ -1,8 +1,11 @@
 node_modules/
+__pycache__/
+*.pyc
 data/raw/
 data/reports/
 data/logs/
 data/db/
 .env
+.claude/
 *.log
 /tmp/
