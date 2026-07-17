@@ -45,7 +45,7 @@ $PAYLOAD"
 RESPONSE=$(curl -s --max-time 90 \
     'https://token-plan-cn.xiaomimimo.com/anthropic/v1/messages' \
     -H 'Content-Type: application/json' \
-    -H 'x-api-key: tp-cpsc4hmutgjg8zl2zrz0ynyj8oa7e9mb2ezaa9joupqrwhqq' \
+    -H 'x-api-key: 你的XIAOMI_API_KEY' \
     -H 'anthropic-version: 2023-06-01' \
     -d "$(python3 -c "
 import json

@@ -67,7 +67,7 @@ ${JSON.stringify(items, null, 2)}`;
 
   // 使用小米模型 API（Anthropic 兼容格式）
   const client = new Anthropic({
-    apiKey: process.env.MIMO_API_KEY || "tp-cpsc4hmutgjg8zl2zrz0ynyj8oa7e9mb2ezaa9joupqrwhqq",
+    apiKey: process.env.MIMO_API_KEY,
     baseURL: "https://token-plan-cn.xiaomimimo.com/anthropic",
   });
 
