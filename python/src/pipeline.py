@@ -11,6 +11,7 @@ from pathlib import Path
 
 from python.src.cleaners.normalizer import normalize
 from python.src.cleaners.intelligence_filter import select_top_intelligence
+from python.src.cleaners.health_monitor import record_health
 from python.src.models.raw_intelligence import RawIntelligence
 from python.src.scrapers.github_trending import GitHubTrendingScraper
 from python.src.scrapers.arxiv import ArxivScraper
@@ -92,7 +93,9 @@ async def run_pipeline(
     logger.info(f"采集完成，原始情报: {len(all_items)} 条")
 
     # 清洗
+    raw_count = len(all_items)
     all_items = normalize(all_items)
+    dedup_removed = raw_count - len(all_items)
 
     # 智能过滤：去重、评分、精选 top 30
     all_items = select_top_intelligence(all_items, max_items=30)
@@ -124,6 +127,13 @@ async def run_pipeline(
     )
 
     logger.info(f"数据已写入: {output_file}")
+
+    # 记录健康指标
+    health_file = Path(output_dir).parent / "health.json"
+    health = record_health(all_items, raw_count, dedup_removed, health_file)
+    if health.get("alerts"):
+        logger.warning(f"健康报警: {len(health['alerts'])} 条异常")
+
     return output_file
 
 
